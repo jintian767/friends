@@ -21,3 +21,6 @@
 
 
 项目核心模块core，所有项目以friends开头进行管理。包的根目录是com.wsx.friends
+
+soa集成微服务设计
+微服务的设计架构基于spring-boot来实现，微服务的整体设计采用fridends-boot来设计
