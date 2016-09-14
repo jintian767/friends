@@ -445,16 +445,16 @@
   <modules>
     <module>friends-core</module>
     <module>friends-user</module>
+    <module>friends-user-interface</module>
     <module>friends-goods</module>
-    <module>friends-chat</module>
-    <module>firends-user-interface</module>
     <module>friends-goods-interface</module>
-    <module>friends-zone</module>
+    <module>friends-hello</module>
     <module>friends-pay</module>
     <module>friends-pay-interface</module>
     <module>friends-es</module>
-    <module>friends-mge</module>
     <module>friends-es-interface</module>
+    <module>friends-mge</module>
     <module>friends-language</module>
+    <module>friends-zone</module>
   </modules>
 </project>
