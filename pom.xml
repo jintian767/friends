@@ -443,7 +443,7 @@
     <finalName>friends</finalName>
   </build>
   <modules>
-    <!-- <module>friends-core</module> -->
+    <module>friends-core</module>
     <module>friends-user</module>
     <module>friends-goods</module>
     <module>friends-chat</module>
@@ -452,7 +452,6 @@
     <module>friends-zone</module>
     <module>friends-pay</module>
     <module>friends-pay-interface</module>
-    <module>friends-core-mongo</module>
     <module>friends-es</module>
     <module>friends-mge</module>
     <module>friends-es-interface</module>
