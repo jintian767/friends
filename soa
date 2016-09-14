@@ -6,3 +6,12 @@ soa架构设计
 2，根据各个服务功能之间的耦合和功能模块的独立，我们根据服务的功能特点分别采用不同的数据存储介质。
 3，分布式的事物处理，对交易类的强一致性数据我们采用事物补偿机制来实现，对于事物要求不是特别高的采用最终一致性原则。
 4，分布式锁的实现，保证分布式环境下共享资源的安全，我们采用redis来控制共享资源的安全。
+
+
+本设计的前提是前端总服务，服务下面面对的是普通的容器服务，比如tomcat运行的应用，再下层是微服务
+该架构设计的技术和开源的产品有：
+基础架构：spring  spring-mvc   mybatis  spring-boot  spring-data
+数据存储：mysql   mongodb   redis   ehcache    elasticsearch
+服务层：dubbox    zookeeper  hession
+消息层：activemq   rocketmq
+中间件：sharding-jdbc    atlas    nginx   http
