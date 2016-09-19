@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../config/ehcache.xsd">
+  <diskStore path="java.io.tmpdir"/>
+  <defaultCache  
+        maxElementsInMemory="10000"
+        eternal="false"
+        timeToLiveSeconds="300"
+        overflowToDisk="true"
+        maxElementsOnDisk="10000000"
+        diskPersistent="false"
+        diskExpiryThreadIntervalSeconds="120"
+        memoryStoreEvictionPolicy="FIFO"/>
+   <cache  
+        name="coreCache"
+        maxElementsInMemory="10000"
+        eternal="false"
+        timeToLiveSeconds="300"
+        overflowToDisk="true"
+        maxElementsOnDisk="10000000"
+        diskPersistent="false"
+        diskExpiryThreadIntervalSeconds="120"
+        memoryStoreEvictionPolicy="FIFO"/> 
+        
+     <cache  
+        name="languageCache"
+        maxElementsInMemory="10000"
+        eternal="false"
+        timeToLiveSeconds="300"
+        overflowToDisk="true"
+        maxElementsOnDisk="10000000"
+        diskPersistent="false"
+        diskExpiryThreadIntervalSeconds="120"
+        memoryStoreEvictionPolicy="FIFO"/> 
+</ehcache>
