@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd 
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+	http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+	
+	<!-- 声明服务提供端的名称 -->
+	<dubbo:application name="user-provider"/>
+	
+	<!-- 服务的注册中心 -->
+	<dubbo:registry address="zookeeper://127.0.0.1:2181" />
+	
+	<!-- 服务的协议，使用dubbo原生自带的dubbo协议 -->
+	<dubbo:protocol name="dubbo" port="20880" />
+	
+	<!-- 发布的服务接口及相关配置 -->
+	<dubbo:service interface="com.wsx.friends.user.rpc.inter.UserCommonInterface" ref="userCommonInterface" protocol="dubbo" timeout="60000" />
+	
+	<!-- 服务的最终实现类 -->
+	<bean id="userCommonInterface" class="com.wsx.friends.user.rpc.impl.UserCommonImpl"/>
+	
+	<!--  -->
+</beans>

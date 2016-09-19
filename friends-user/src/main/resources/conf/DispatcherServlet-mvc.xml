@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd  
+            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd  
+            http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd              
+            http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd">
+            
+            
+	<context:component-scan base-package="com.wsx.friends.user">
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service" />
+	</context:component-scan>
+	
+	<bean id="stringHttpMessageConverter" class="org.springframework.http.converter.StringHttpMessageConverter"/>
+	<bean id="mappingJacksonHttpMessageConverter" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
+   		<property name="supportedMediaTypes" value="application/json" />
+	</bean>
+	
+	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+	 	<property name="messageConverters" >
+             <list>
+                 <!-- 新增的StringMessageConverter bean-->
+                 <ref bean="stringHttpMessageConverter" />
+                 <ref bean="mappingJacksonHttpMessageConverter" />
+             </list>
+        </property>
+	</bean>
+	
+	<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping"></bean>
+	
+	
+	<bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+		<property name="order" value="1"></property>
+		<property name="defaultContentType" value="text/html" />
+		<property name="mediaTypes">
+			<map>
+				<entry key="json" value="application/json" />
+				<entry key="ajax" value="application/json" />
+			</map>
+		</property>
+		<property name="viewResolvers">
+			<list>
+				<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+					<property name="prefix">
+						<value>/</value>
+					</property>
+					<property name="suffix">
+						<value>.jsp</value>
+					</property>
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- 异常全局处理 -->
+	<bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<property name="exceptionMappings">
+            <props>
+                <prop key="java.lang.RuntimeException">error</prop>
+            </props>
+        </property>
+	</bean>
+            
+</beans>

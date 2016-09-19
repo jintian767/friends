@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wsx.friends.user.signup.mapper.WebUserMapper">
+	<resultMap id="resultMap" type="com.wsx.friends.user.signup.model.WebUser" >
+	    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+	    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+	    <result column="nick_name" property="nickName" jdbcType="VARCHAR" />
+	    <result column="phone" property="phone" jdbcType="VARCHAR" />
+	    <result column="location" property="location" jdbcType="VARCHAR" />
+	    <result column="birthday" property="birthday" jdbcType="VARCHAR" />
+	    <result column="country" property="country" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<sql id="columnsName">
+     user_id,user_name,nick_name,phone,location,birthday,country
+  	</sql>
+  	
+  	<insert id="saveWebUser">
+    	insert into web_user (user_id,user_name,nick_name,phone,location,birthday,country) 
+    		values (#{userId},#{userName},#{nickName},#{phone},#{location},#{birthday},#{country})
+  	</insert>
+	
+	<select id="getWebUserByID" resultMap="resultMap" parameterType="String">
+		select <include refid="columnsName"/> from web_user where user_id = #{userId}
+	</select>
+	
+	<select id="findAllUsers" resultMap="resultMap">
+   select <include refid="columnsName"/> from web_user 
+  </select>
+  
+  <select id="findByWebUserIds" resultMap="resultMap">
+    select <include refid="columnsName"/> from web_user where user_id in (
+     <foreach collection="list" item="item" separator=",">
+        #{item}
+     </foreach>
+    )
+    
+  </select>
+</mapper>

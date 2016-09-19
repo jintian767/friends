@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+日志级别
+DEBUG
+INFO
+WARN
+ERROR
+FATAL
+ -->
+<configuration>
+	<property name="APPName" value="friends-user" />
+	<property name="catalina.base" value="" />
+	<property name="logbase" value="${catalina.base}/logs/${APPName}/" />
+	
+	<jmxConfigurator />
+	<appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+		<Encoding>UTF-8</Encoding>      
+        <layout class="ch.qos.logback.classic.PatternLayout">     
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger.%M - %msg%n     
+            </pattern>     
+        </layout>  
+	</appender>
+	<appender name="FILE"  
+        class="ch.qos.logback.core.rolling.RollingFileAppender">   
+        <Encoding>UTF-8</Encoding>          
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">   
+            <FileNamePattern>${logbase}%d{yyyy-MM-dd}.log</FileNamePattern>   
+            <MaxHistory>30</MaxHistory>   
+        </rollingPolicy>   
+        <layout class="ch.qos.logback.classic.PatternLayout">   
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger.%M - %msg%n   
+            </pattern>   
+       </layout>   
+    </appender>
+    
+	<root level="DEBUG">
+		<appender-ref ref="stdout" />
+		<appender-ref ref="FILE" />
+	</root>
+	
+</configuration>
